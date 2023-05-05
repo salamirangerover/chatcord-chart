@@ -1,0 +1,21 @@
+---
+# Source: chatcord-chart/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "chatcord-chatcord-chart-test-connection"
+  labels:
+    helm.sh/chart: chatcord-chart-0.1.0
+    app.kubernetes.io/name: chatcord-chart
+    app.kubernetes.io/instance: chatcord
+    app.kubernetes.io/version: "1.1"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['chatcord-chatcord-chart:80']
+  restartPolicy: Never
